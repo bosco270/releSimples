@@ -14,6 +14,34 @@ Uma classe C++ simples para controle de relés com suporte a **temporização au
 
 ---
 
+🧰 Exemplo:
+'''cpp
+
+    #include "Rele.hpp"
+    
+    Rele rele(8); // Relé conectado ao pino 8
+    
+    void setup() {
+        Serial.begin(9600);
+        Serial.println("Iniciando teste do relé...");
+        
+        // Liga o relé por 2 minutos
+        rele.Timer(2);
+    }
+    
+    void loop() {
+        // Atualiza o estado do relé
+        rele.Update();
+    
+        // Apenas para feedback visual via Serial
+        static unsigned long lastPrint = 0;
+        if (millis() - lastPrint > 1000) {
+            lastPrint = millis();
+            Serial.println("Rele ativo...");
+        }
+    }
+
+
 ## 🧩 Estrutura da Classe
 
 ```cpp
